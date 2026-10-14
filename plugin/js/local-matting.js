@@ -16,7 +16,9 @@
   const ORT_ASSET_DIR_LEGACY = "js/vendor/ort-legacy/";
   // 模型不随插件包分发（170MB），首次使用时按需从 OSS 拉、proxy 边下边缓存到本地、之后秒开。
   const MODEL_NAME = "isnet-general-use.onnx";
-  const DEFAULT_MODEL_URL = "https://llteac-file.oss-cn-hangzhou.aliyuncs.com/wps-ai/models/isnet-general-use.onnx";
+  // 抠图模型托管在上游作者 OSS，按宪法 §八 禁用；恢复方法 = 填回模型地址并把下面的 isSupported 改回 true。
+  // 原地址: "https://llteac-file.oss-cn-hangzhou.aliyuncs.com/wps-ai/models/isnet-general-use.onnx"
+  const DEFAULT_MODEL_URL = "";
 
   let _sessionPromise = null;
 
@@ -246,9 +248,8 @@
     return browserWasmSupported() ? inferMaskInBrowser(chw, onProgress, signal) : inferMaskViaProxy(chw, onProgress, signal);
   }
 
-  // 模型是否已就绪（会话建过）——用于 UI 决定是否显示"本地抠图"。这里恒为 true（按需懒建），
-  // 真正能不能用由第一次调用时 ensureSession 决定（会抛错并被上层 catch）。
-  function isSupported() { return true; }
+  // 抠图模型托管在上游作者 OSS，按宪法 §八 禁用；恢复方法 = 填回模型地址并把下面的 isSupported 改回 true。
+  function isSupported() { return false; }
 
   /**
    * 本地抠图：输入任意 dataURL/URL，返回透明 PNG dataURL（主体保留、背景透明，发丝软过渡）。

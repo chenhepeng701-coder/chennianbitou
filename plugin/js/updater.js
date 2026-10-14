@@ -1,4 +1,4 @@
-// 灵犀AI 插件热更新
+// 陈年笔头助手 插件热更新
 //
 // 流程：
 //   1. checkForUpdate() —— 走 proxy 拉 manifest（避开 OSS CORS）+ 设备 SN
@@ -35,7 +35,10 @@
   "use strict";
 
   // manifest 默认拉取地址（用户也可以在设置里覆盖到自建 mirror / 内网部署）
-  const DEFAULT_MANIFEST_URL = "https://llteac-file.oss-cn-hangzhou.aliyuncs.com/wps-ai/manifest.json";
+  // 自动更新已关闭：本项目不再依赖上游作者（llteac）的阿里云 OSS 作为更新源。
+  // 留空 = 没有配置更新源，checkForUpdate 会直接返回 disabled，不发任何网络请求。
+  // 以后要自建版本分发时，在这里填自己的 manifest 地址即可恢复。
+  const DEFAULT_MANIFEST_URL = "";
   function PROXY_BASE() { return global.WpsAiRuntime?.proxyBase?.() || "http://127.0.0.1:3890"; }
   // 本地缓存最近一次检查结果（避免 30 分钟内反复打 OSS）
   const LAST_CHECK_KEY = "lingxi_updater_last_check_v1";
@@ -200,8 +203,24 @@
   }
 
   async function checkForUpdate(opts) {
-    const manifestUrl = opts?.manifestUrl;
+    const manifestUrl = opts?.manifestUrl || DEFAULT_MANIFEST_URL;
     const force = !!opts?.force;
+    // 自动更新已关闭：没有配置更新源时立刻返回 disabled，不发任何网络请求
+    // （不依赖上游 llteac OSS；以后填了 DEFAULT_MANIFEST_URL 或显式传 manifestUrl 即恢复）
+    if (!manifestUrl) {
+      return {
+        current: await readCurrentVersion(),
+        latest: "",
+        updateAvailable: false,
+        disabled: true,
+        checkedAt: Date.now(),
+        channel: "off",
+        canaryReason: null,
+        deviceSn: "",
+        manifest: null,
+        rawManifest: null
+      };
+    }
     // 关键：先读当前版本再判缓存。4 个宿主（wps/et/wpp/pdf）在 127.0.0.1:3889 共
     // 用 origin → 共用 localStorage → 如果直接吃缓存，会拿到别的宿主上下文里保存
     // 的 current，Word 里看到的 current 会被 Excel 复用出来（bug：Excel 显示的

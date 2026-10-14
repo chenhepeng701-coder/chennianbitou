@@ -126,7 +126,7 @@
     "js/history.js",
     "js/material-library.js", // 生图素材库：记录 generate_image 历史，供 ribbon「素材库」打开
     "js/material-tagger.js", // 素材内容打标（LLM，文本/视觉），依赖 material-library + providers
-    "js/local-matting.js", // 本地离线抠图（onnxruntime-web + isnet 模型），发丝级软 alpha，无需联网/供应商
+    // "js/local-matting.js", // 按宪法 §八 禁用（上游 OSS 抠图模型）；恢复方法：取消此行注释即可
     "js/snapshot.js",
     "js/idle-persist.js",   // 高频持久化 idle 错峰（P0-3）——要在 conversations.js 之前
     "js/task-store.js",     // 后台长任务统一抽象（P2-1）：状态/进度/日志/停止信号
