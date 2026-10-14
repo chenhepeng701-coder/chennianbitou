@@ -231,11 +231,11 @@ registry.registerTool({
 
 ### 交流与反馈
 
-扫码关注获取公文素材与最新更新，交流或反馈 Bug：
+扫码添加客服，获取公文素材与最新更新，交流或反馈 Bug：
 
 <img src="plugin/img/qrcode.jpg" alt="扫码添加客服" width="160" />
 
-> 微信扫码 → 关注获取素材与更新
+> 微信扫码 → 加客服为好友
 
 ### Bug 上报信息
 

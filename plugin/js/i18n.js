@@ -404,14 +404,13 @@
     "重扫 localStorage + proxy 侧缓存": "Rescan localStorage + proxy-side cache",
     "重新读取 localStorage": "Reload localStorage",
 
-    // Bug 反馈
-    "遇到问题？欢迎留言反馈！": "Ran into a problem? Join the community group to report it!",
-    "扫码关注获取素材与更新": "Scan the QR code on WeChat to follow us",
+    // Bug 反馈（此区二维码是客服好友码，禁止用「关注 / follow」描述）
+    "遇到问题？欢迎留言反馈！": "Ran into a problem? Feedback is welcome!",
+    "扫码添加客服微信，反馈问题或领取素材": "Scan to add our support on WeChat — report issues or claim materials",
     "扫码添加客服": "Scan the QR code to add our support",
-    "扫描下方二维码，获取素材与更新": "Scan the QR code below to follow the official account",
-    "有问题可在素材库官网留言反馈": "Send in the official account",
-    "，即可获取进群链接": "to get the group invite link",
-    "反馈时描述问题，附上截图更有帮助": "Describe the issue in the group — screenshots help a lot",
+    "也可以到素材库官网留言：": "You can also leave a message on the material site:",
+    "反馈时描述问题，附上截图更有帮助": "Describe the issue clearly — screenshots help a lot",
+    "微信扫码，加客服为好友": "Scan on WeChat to add our support as a friend",
     "基本信息": "Basics",
 
     // 引流卡片文案 (§3.5)

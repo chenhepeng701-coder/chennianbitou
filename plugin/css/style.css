@@ -1698,6 +1698,19 @@ code {
   font-size: 11px;
 }
 
+/* 反馈区「进入陈年笔头网」链接：做成一眼可见的可点样式（纯追加，不改其它选择器） */
+#feedbackSiteLink {
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+
+#feedbackSiteLink:hover {
+  color: var(--primary-hover);
+}
+
 /* 二维码区域：独立 Panel 版（更大尺寸 + 居中 + 标签） */
 .feedback-qr-wrap {
   display: flex;
