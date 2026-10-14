@@ -15335,20 +15335,23 @@
       els.aboutDeviceSn?.addEventListener("click", copyDeviceSn);
       els.exportDiagBundleBtn?.addEventListener("click", exportDiagnosticBundle);
       // 官网地址：点链接优先走系统默认浏览器（避免 WPS WebView 里就地跳到白屏）
+      // 三级降级（与 auth.js:152 / promo-card.js openExternal 一致）：
+      // ① wps.OAAssist.ShellExecute ② window.open ③ 都不行 → 不 preventDefault，交给 <a target="_blank">
+      // 注意：WPS 不存在 wps.OpenUrl / app.OpenUrl 接口，禁止使用（那两个分支永远进不去）。
       els.aboutHomepageLink?.addEventListener("click", (ev) => {
         const url = els.aboutHomepageLink.href;
         if (!url) return;
-        // WPS 走 Shell.Application ShellExecute / WPS 官方 openUrl；不行退回 target="_blank" 默认行为
         try {
-          const app = global.WpsAiAddon?.getApplicationSync?.();
-          if (app && typeof app.OpenUrl === "function") {
-            app.OpenUrl(url); ev.preventDefault(); return;
+          if (global.wps?.OAAssist?.ShellExecute) {
+            global.wps.OAAssist.ShellExecute(url); ev.preventDefault(); return;
           }
         } catch (e) {}
         try {
-          if (global.wps?.OpenUrl) { global.wps.OpenUrl(url); ev.preventDefault(); return; }
+          const win = window.open(url, "_blank", "noopener,noreferrer");
+          if (win && !win.closed) { ev.preventDefault(); return; }
         } catch (e) {}
         // 兜底：让 target="_blank" 自己走 —— WebView 会试着开外部浏览器
+        console.warn("[about] 外部浏览器唤起失败，改由 <a target=_blank> 兜底：", url);
       });
       els.copyHomepageBtn?.addEventListener("click", async () => {
         const url = els.aboutHomepageLink?.href || "http://ape.xiaolvzhilian.com/index.php?mod=mobile&act=shopwap&do=service&beid=70&shareid=U240323092873558953";

@@ -176,31 +176,54 @@
   }
 
   /**
-   * 官网跳转（复用 promo-card 三级打开与兜底策略，不引入新依赖）
+   * 统一外部跳转姿势的本地等价实现（与 promo-card.js 的 openExternal 行为完全一致）
+   * ① global.wps.OAAssist.ShellExecute —— WPS 原生唤起系统浏览器
+   * ② window.open(url, "_blank", "noopener,noreferrer") —— 返回非 null 且未被 closed 即算成功
+   * ③ 都失败 → 返回 false，由调用方展示兜底行
+   *
+   * 注意：WPS 没有 wps.OpenUrl / app.OpenUrl 接口，禁止再依赖（那两个分支永远进不去）。
+   * @param {string} url 目标地址
+   * @returns {boolean} 是否已成功唤起浏览器
+   */
+  function openExternalLocal(url) {
+    if (!url) return false;
+
+    // 一级：WPS 原生 ShellExecute（唤起系统浏览器）
+    try {
+      if (global.wps && global.wps.OAAssist && typeof global.wps.OAAssist.ShellExecute === "function") {
+        global.wps.OAAssist.ShellExecute(url);
+        return true;
+      }
+    } catch (eWps) {}
+
+    // 二级：宿主 WebView 允许时用 window.open 兜底
+    try {
+      const win = window.open(url, "_blank", "noopener,noreferrer");
+      if (win && !win.closed) return true;
+    } catch (eOpen) {}
+
+    return false;
+  }
+
+  /**
+   * 统一跳转入口：优先复用 promo-card.js 导出的 openExternal（DRY，两边行为完全一致），
+   * 取不到时用本地等价实现兜底。
+   */
+  function openExternal(url) {
+    const shared = global.WpsAiPromoCard;
+    if (shared && typeof shared.openExternal === "function") {
+      return !!shared.openExternal(url);
+    }
+    return openExternalLocal(url);
+  }
+
+  /**
+   * 官网跳转（复用统一三级打开与兜底策略，不引入新依赖）
    */
   function openSiteUrl(targetUrl) {
     const url = targetUrl || CONFIG.SITE_URL || "http://ape.xiaolvzhilian.com/index.php?mod=mobile&act=shopwap&do=service&beid=70&shareid=U240323092873558953";
-    try {
-      if (global.wps && typeof global.wps.OpenUrl === "function") {
-        global.wps.OpenUrl(url);
-        return;
-      }
-    } catch (e) {}
 
-    try {
-      if (global.WpsAiAddon && typeof global.WpsAiAddon.getApplicationSync === "function") {
-        const app = global.WpsAiAddon.getApplicationSync();
-        if (app && typeof app.OpenUrl === "function") {
-          app.OpenUrl(url);
-          return;
-        }
-      }
-    } catch (e) {}
-
-    try {
-      const win = window.open(url, "_blank", "noopener,noreferrer");
-      if (win && !win.closed) return;
-    } catch (e) {}
+    if (openExternal(url)) return;
 
     if (typeof document !== "undefined") {
       const fb = document.getElementById("paywallFallbackUrl");
