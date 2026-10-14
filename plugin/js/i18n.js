@@ -42,6 +42,7 @@
     "官网": "Website",
     "复制官网地址": "Copy website URL",
     "在浏览器中打开": "Open in browser",
+    "进入公文素材库官网": "Official Material Site",
 
     // 模型选择
     "模型": "Model",
@@ -146,6 +147,11 @@
     "提示词": "Prompt",
     "今日": "Today",
     "最新": "Latest",
+
+    // 信创公文字体缺失提示条 (§3.4)
+    "检测到当前系统缺失标准公文字体": "Standard official document fonts are missing on this system",
+    "获取方式：打开 WPS 的「字体」列表，搜索「方正小标宋简体」「方正仿宋_GB2312」「方正楷体_GBK」，点安装即可（按 WPS 的提示操作，部分字体需要 WPS 会员）；也可通过单位正版渠道或向方正官方购买商用授权。": "How to get them: open the Font list in WPS, search for \"方正小标宋简体\", \"方正仿宋_GB2312\" and \"方正楷体_GBK\", then click Install (follow the WPS prompts; some fonts require a WPS membership). You can also use your organization's licensed channels or purchase a commercial license from Founder.",
+    "未安装不影响使用：排版时会自动降级为系统已有的仿宋 / 楷体等字体，版式规则（页边距、字号、行距）不受影响。": "Not installed is fine: formatting will automatically fall back to the 仿宋 / 楷体 fonts already available on your system; layout rules (margins, font sizes, line spacing) are unaffected.",
 
     // AI 排版
     "AI 排版预览": "AI Formatting Preview",

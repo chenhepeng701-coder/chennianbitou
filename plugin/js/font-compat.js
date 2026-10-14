@@ -7,7 +7,7 @@
  *    WPS 接口不可用时通过面板内 canvas measureText 探针探测。
  * 2. 自动降级：按标准公文字体候选链挑出首个真实存在的系统字体；候选链全军覆没时保留原标准字体名。
  * 3. 真正生效：就地改写 window.WpsAiGovFormat.FORMAT_CONFIG，并提供 resolveFont 钩子确保排版和五个小按钮生效。
- * 4. 黄色提示条：仅在确实有字体缺失时显示在面板顶部，包含一键安装包领取文案与具体降级明细，支持会话内关闭。
+ * 4. 黄色提示条：仅在确实有字体缺失时显示在面板顶部，纯文字指路（引导到 WPS 字体列表自行搜索安装）与自动降级说明，支持会话内关闭。
  */
 
 (function attachFontCompat(global) {
@@ -53,9 +53,13 @@
     ])
   });
 
-  // 宪法规定的标准警告文案（一字不差）
-  const BANNER_MAIN_TEXT =
-    "检测到当前系统缺失标准公文字体，扫码免费领取《Win/统信/麒麟公文字体一键安装包》";
+  // 字体缺失提示条文案（纯文字指路：引导用户在 WPS 字体列表中自行搜索安装，不承诺提供字体文件、不含任何外链）
+  const BANNER_MAIN_TEXT = "检测到当前系统缺失标准公文字体";
+  const BANNER_MISSING_PREFIX = "缺失字体：";
+  const BANNER_GUIDE_TEXT =
+    "获取方式：打开 WPS 的「字体」列表，搜索「方正小标宋简体」「方正仿宋_GB2312」「方正楷体_GBK」，点安装即可（按 WPS 的提示操作，部分字体需要 WPS 会员）；也可通过单位正版渠道或向方正官方购买商用授权。";
+  const BANNER_FALLBACK_NOTE =
+    "未安装不影响使用：排版时会自动降级为系统已有的仿宋 / 楷体等字体，版式规则（页边距、字号、行距）不受影响。";
 
   // 内存状态：会话内是否已被用户点击「×」关闭（不重复弹扰用户）
   let isBannerDismissed = false;
@@ -237,12 +241,18 @@
 
     if (detail) {
       if (result.missingDetails && result.missingDetails.length > 0) {
-        const detailText =
-          "缺失：" +
-          result.missingDetails
-            .map(item => `${item.standard}→${item.fallback}`)
-            .join("；");
-        detail.textContent = detailText;
+        const lines = [
+          BANNER_MISSING_PREFIX + (result.missing || []).join("、"),
+          BANNER_GUIDE_TEXT,
+          BANNER_FALLBACK_NOTE
+        ];
+        detail.textContent = "";
+        lines.forEach(lineText => {
+          const line = document.createElement("div");
+          line.className = "font-warning-detail-line";
+          line.textContent = lineText;
+          detail.appendChild(line);
+        });
         detail.classList.remove("hidden");
       } else {
         detail.textContent = "";

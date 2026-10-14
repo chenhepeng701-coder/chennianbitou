@@ -9850,6 +9850,11 @@ body.pure-mode .image-gen-panel.hidden { display: none; }
   word-break: break-all;
 }
 
+/* 多行小字：行与行之间留 2px 间距 */
+.font-warning-detail-line + .font-warning-detail-line {
+  margin-top: 2px;
+}
+
 .font-warning-detail.hidden {
   display: none !important;
 }
