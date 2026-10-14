@@ -1,5 +1,5 @@
 // ============================================================================
-// app.js —— WPS 灵犀 AI 主脚本
+// app.js —— WPS 陈年笔头助手 主脚本
 // 大文件 (~15k 行)，按 // ===== 分节：
 //   1. Boot / mode 检测 / IPC 常量        (top)
 //   2. 预览日志 / 消息提示 / 文档锁定
@@ -2054,7 +2054,7 @@
     // 文档锁定：AI 工作期间禁止用户编辑文档
     if (isBusy) lockHostDocument();
     else unlockHostDocument();
-    // 修订模式（仅 WPS 文字）：AI 工作期间打开原生修订 + 把作者临时设为「灵犀AI」，结束后还原
+    // 修订模式（仅 WPS 文字）：AI 工作期间打开原生修订 + 把作者临时设为「陈年笔头助手」，结束后还原
     applyReviseTurn(isBusy);
     // 一轮结束后按当前修订条数刷新「接受全部 / 全部回撤」按钮显隐（有修订才显示）
     if (!isBusy) updateReviseActions();
@@ -2139,7 +2139,7 @@
     els.forceUnlockBtn.classList.toggle("hidden", !(locked && !reviseMode));
   }
 
-  // 修订模式：AI 工作期间(isBusy)包一层——打开原生修订 + 作者设为「灵犀AI」；结束还原作者。
+  // 修订模式：AI 工作期间(isBusy)包一层——打开原生修订 + 作者设为「陈年笔头助手」；结束还原作者。
   // 只在 WPS 文字 + 开关打开时生效；endRevise 没 begin 过时是 no-op，收尾无脑调即可。
   function applyReviseTurn(isBusy) {
     if ((currentHostInfo?.host || "") !== "wps") return;
@@ -2147,7 +2147,7 @@
     if (!w) return;
     if (isBusy) {
       if (currentSettings?.reviseMode && typeof w.beginRevise === "function") {
-        Promise.resolve(w.beginRevise("灵犀AI")).catch(() => {});
+        Promise.resolve(w.beginRevise("陈年笔头助手")).catch(() => {});
       }
     } else if (typeof w.endRevise === "function") {
       Promise.resolve(w.endRevise()).catch(() => {});
@@ -2165,7 +2165,7 @@
       try { await w.manageRevisions(on ? "enable_track" : "disable_track"); } catch (e) {}
     }
     showMessage(
-      on ? "已开启修订模式：AI 的改动会记为 Word 修订（作者「灵犀AI」），可逐条接受或全部回撤。" : "已关闭修订模式。",
+      on ? "已开启修订模式：AI 的改动会记为 Word 修订（作者「陈年笔头助手」），可逐条接受或全部回撤。" : "已关闭修订模式。",
       "info",
       { duration: 4000 }
     );
@@ -3277,6 +3277,9 @@
     }
     openSettingsModal(initialPanel || "chat", initialSubtab);
   }
+
+  global.openSettingsAsDialog = openSettingsAsDialog;
+  global.openSettingsModal = openSettingsModal;
 
   // 用 WPS Application.ShowDialog 打开独立的 PPT 风格设置窗口（脱离 TaskPane 宽度限制，
   // 跟"设置"dialog 一致：modal=true 阻塞到关闭，关掉后 activateWpsApp 把 WPS 拉回前台）。
@@ -4406,7 +4409,7 @@
       <details class="local-model-guide">
         <summary>本地模型选型建议（务必看一眼）</summary>
         <div class="local-model-guide-body">
-          <p class="muted" style="margin:6px 0 8px;">灵犀 AI 深度依赖<b>工具调用 (function calling)</b>来操作文档；图片识别 / 截图分析依赖<b>多模态 (vision)</b>。多数开源模型至少缺一项，挑错了"配上能聊天但用不了功能"。</p>
+          <p class="muted" style="margin:6px 0 8px;">陈年笔头助手 深度依赖<b>工具调用 (function calling)</b>来操作文档；图片识别 / 截图分析依赖<b>多模态 (vision)</b>。多数开源模型至少缺一项，挑错了"配上能聊天但用不了功能"。</p>
 
           <p style="margin:8px 0 4px;"><b>✓ 推荐配置（工具调用稳定，部分带视觉）</b></p>
           <ul style="margin:2px 0 8px 18px; padding:0; line-height:1.6;">
@@ -7025,7 +7028,7 @@
       const resp = await fetch(base + "/export-doc", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ html, fileName: t("灵犀AI 排版导出") })
+        body: JSON.stringify({ html, fileName: t("陈年笔头助手 排版导出") })
       });
       const payload = await resp.json().catch(() => ({}));
       if (!resp.ok || !payload.ok) throw new Error(payload.error || `HTTP ${resp.status}`);
@@ -9086,7 +9089,7 @@
           layoutLine,
           sp.themeFile ? `  · 主题模板文件：${sp.themeFile}（每页生成完毕后调用 wpp_apply_theme(themePath=该路径) 套用）` : "",
           "",
-          "灵犀 PPT 设计宪法（每次配版前自检）：",
+          "陈年笔头 PPT 设计宪法（每次配版前自检）：",
           ...guidelines.map((g, i) => `  ${i + 1}. ${g}`),
           "",
           "实践：每次 wpp_add_slide 之后调一次 wpp_apply_style_preset 自动套用字体；如果有自定义文本框（wpp_add_text_box）也按上面的字体字号填；不确定时先调 wpp_get_style_preset 拿完整色板与签名元素再设计。"
@@ -10519,11 +10522,18 @@
   }
 
   function openOutlineModal() {
-    if (!els.outlineText.value) {
-      els.outlineText.value = "";
+    const doOpen = () => {
+      if (!els.outlineText.value) {
+        els.outlineText.value = "";
+      }
+      els.outlineModal.classList.remove("hidden");
+      setTimeout(() => els.outlineText.focus(), 50);
+    };
+    if (global.WpsAiPaywall?.guard) {
+      // 返回 guard 的返回值：guard 内部同步调用 doOpen，异常行为与下面直接 doOpen() 一致
+      return global.WpsAiPaywall.guard("AI 写提纲", doOpen);
     }
-    els.outlineModal.classList.remove("hidden");
-    setTimeout(() => els.outlineText.focus(), 50);
+    doOpen();
   }
 
   function closeOutlineModal() {
@@ -12360,6 +12370,12 @@
 
   // 智能抠图：本地优先；需要 AI 回退时走当前图像渠道的编辑接口，AI 结果再本地透明化。
   async function cutoutCurrentMaterial() {
+    // 宪法 §八 防御：本地抠图模型已禁用，智能抠图暂时下线；恢复方法：恢复 local-matting.js 的 isSupported 返回 true
+    const localOk = !!(global.WpsAiLocalMatting && global.WpsAiLocalMatting.isSupported && global.WpsAiLocalMatting.isSupported());
+    if (!localOk) {
+      showMessage("智能抠图已暂时下线（本地模型依赖上游服务器）。", "info");
+      return;
+    }
     const btn = els.materialCutoutBtn;
     if (_imgEditAbort) { try { _imgEditAbort.abort(); } catch (e) {} return; } // 运行中再点=取消
     const lib = global.WpsAiMaterialLibrary;
@@ -12399,6 +12415,12 @@
   }
 
   async function localCutoutCurrentMaterial() {
+    // 宪法 §八 防御：本地抠图模型已禁用，本地模型抠图暂时下线；恢复方法：恢复 local-matting.js 的 isSupported 返回 true
+    const localOk = !!(global.WpsAiLocalMatting && global.WpsAiLocalMatting.isSupported && global.WpsAiLocalMatting.isSupported());
+    if (!localOk) {
+      showMessage("智能抠图已暂时下线（本地模型依赖上游服务器）。", "info");
+      return;
+    }
     const btn = els.materialLocalCutoutBtn;
     if (_imgEditAbort) { try { _imgEditAbort.abort(); } catch (e) {} return; }
     const lib = global.WpsAiMaterialLibrary;
@@ -12447,8 +12469,11 @@
     const isCodexBridge = imageProviderType === "codex-bridge";
     const localOk = !!(global.WpsAiLocalMatting && global.WpsAiLocalMatting.isSupported && global.WpsAiLocalMatting.isSupported());
     const show = supportsAiEdit || localOk; // 本地抠图不挑渠道，可用即显示
-    els.materialCutoutBtn?.classList.toggle("hidden", !show);
+    // 宪法 §八：智能抠图/本地模型抠图/抠出涂抹主体 依赖本地模型，本地抠图禁用期间下线，始终保持隐藏。
+    // 恢复方法：将 materialCutoutBtn 恢复为 (!show)，移除 materialBrushCutoutBtn 的 hidden 切换。
+    els.materialCutoutBtn?.classList.toggle("hidden", !localOk || !show);
     els.materialLocalCutoutBtn?.classList.toggle("hidden", !localOk);
+    els.materialBrushCutoutBtn?.classList.toggle("hidden", !localOk);
     els.materialBrushEditBtn?.classList.toggle("hidden", !show);
     // 「涂抹处重绘」走当前图像渠道的 AI 编辑能力；纯本地只保留「抠出涂抹主体」
     els.materialBrushInpaintBtn?.classList.toggle("hidden", !supportsAiEdit);
@@ -12647,6 +12672,12 @@
   }
   async function runBrushCutoutWithoutSelection(mode) {
     closeMaterialCutoutChoice();
+    // 宪法 §八 防御：本地抠图模型已禁用，智能抠图暂时下线；恢复方法：恢复 local-matting.js 的 isSupported 返回 true
+    const localOk = !!(global.WpsAiLocalMatting && global.WpsAiLocalMatting.isSupported && global.WpsAiLocalMatting.isSupported());
+    if (!localOk) {
+      showMessage("智能抠图已暂时下线（本地模型依赖上游服务器）。", "info");
+      return;
+    }
     const description = String(els.materialCutoutDescribeInput?.value || "").trim();
     if (mode === "describe" && !description) {
       showMessage("请描述需要抠出的部分，或选择整张去背景。", "error");
@@ -12700,6 +12731,12 @@
   // 抠出涂抹主体：用涂抹范围告诉 AI 要抠哪个主体——按涂抹外接框裁出主体区域，再用 AI 去背景。
   // 这样既是 AI 抠图（智能抠边、透明底），又靠涂抹定位主体，且裁过之后不会整张重新生成。支持取消。
   async function aiBrushCutout() {
+    // 宪法 §八 防御：抠出涂抹主体依赖本地模型，本地抠图禁用期间下线；恢复方法：恢复 local-matting.js 的 isSupported 返回 true
+    const localOk = !!(global.WpsAiLocalMatting && global.WpsAiLocalMatting.isSupported && global.WpsAiLocalMatting.isSupported());
+    if (!localOk) {
+      showMessage("智能抠图已暂时下线（本地模型依赖上游服务器）。", "info");
+      return;
+    }
     const btn = els.materialBrushCutoutBtn;
     if (_imgEditAbort) { try { _imgEditAbort.abort(); } catch (e) {} return; } // 运行中再点=取消
     const lib = global.WpsAiMaterialLibrary;
@@ -13982,14 +14019,14 @@
       const I = global.WpsAiI18n;
       if (I?.resolvedLang?.() === "en") {
         const translated = I.t(suffix);
-        if (translated !== suffix) return "Lingxi AI · " + translated;
+        if (translated !== suffix) return "Chennian Bitou · " + translated;
         // 组合后缀（如「更正式预览」「快速润色预览」）：整词没命中时拆掉「预览」再翻
         const m = /^(.+)预览$/.exec(suffix);
-        if (m) return "Lingxi AI · " + (I.t(m[1]) || m[1]) + " Preview";
-        return "Lingxi AI · " + suffix;
+        if (m) return "Chennian Bitou · " + (I.t(m[1]) || m[1]) + " Preview";
+        return "Chennian Bitou · " + suffix;
       }
     } catch (e) {}
-    return "灵犀AI " + suffix;
+    return "陈年笔头助手 " + suffix;
   }
 
   // 界面语言下拉：主面板 bindEvents 和设置 dialog 分支都要绑（设置实际通过 ?mode=settings
@@ -14137,7 +14174,7 @@
         if (chatBusy) return;
         _skillSuggest.dismissed = true;
         if (els.skillSuggestBar) els.skillSuggestBar.classList.add("hidden");
-        runChatTurn("把我们刚才这轮对话里做的操作总结成一个可复用的灵犀AI技能：起一个简洁的技能名，写清楚适用场景（description，便于以后判断何时套用），再把关键步骤 / 要点 / 坑整理成 content，用 save_skill 保存。");
+        runChatTurn("把我们刚才这轮对话里做的操作总结成一个可复用的陈年笔头助手技能：起一个简洁的技能名，写清楚适用场景（description，便于以后判断何时套用），再把关键步骤 / 要点 / 坑整理成 content，用 save_skill 保存。");
       });
     }
     if (els.skillSuggestDismissBtn) {
@@ -15314,7 +15351,7 @@
         // 兜底：让 target="_blank" 自己走 —— WebView 会试着开外部浏览器
       });
       els.copyHomepageBtn?.addEventListener("click", async () => {
-        const url = els.aboutHomepageLink?.href || "https://wps-ai.llteac.cn/";
+        const url = els.aboutHomepageLink?.href || "https://your-site.com";
         try {
           if (navigator.clipboard?.writeText) await navigator.clipboard.writeText(url);
           else {
@@ -15806,6 +15843,20 @@
         els.canaryHeaderBadge.title = `你正在使用灰度（canary/${reason}）版本。点击进设置 → 程序信息查看详情 / 回退。`;
       }
     }
+    if (result?.disabled) {
+      // 自动更新已关闭（不依赖上游外部更新源）：直接说明，别显示「已是最新」误导用户
+      if (els.updateStatusBadge) {
+        els.updateStatusBadge.textContent = "已关闭";
+        els.updateStatusBadge.className = "badge badge-muted";
+        els.updateStatusBadge.title = "自动更新已关闭：本项目不依赖外部更新源，需手动升级安装包";
+      }
+      if (els.updateLastCheckedAt) els.updateLastCheckedAt.textContent = "—";
+      if (els.updateLatestVersion) els.updateLatestVersion.textContent = "—";
+      if (els.updateChangelog) els.updateChangelog.style.display = "none";
+      if (els.updateDownloadBtn) els.updateDownloadBtn.style.display = "none";
+      _latestManifest = null;
+      return;
+    }
     if (!result) {
       els.updateStatusBadge.textContent = "未检查";
       els.updateStatusBadge.className = "badge badge-muted";
@@ -15849,7 +15900,9 @@
     try {
       const result = await global.WpsAiUpdater.checkForUpdate({ force: true });
       renderUpdateUi(result);
-      if (result.updateAvailable) {
+      if (result.disabled) {
+        showMessage("自动更新已关闭（本项目不依赖外部更新源，升级请手动下载安装包）", "info");
+      } else if (result.updateAvailable) {
         showMessage(`发现新版本 v${result.latest}（当前 v${result.current}）`, "success");
       } else {
         showMessage(`已是最新（v${result.current}）`, "info");
@@ -15898,6 +15951,8 @@
     try {
       const result = await global.WpsAiUpdater.checkForUpdate({ force: false });
       renderUpdateUi(result);
+      // 自动更新已关闭：不打网络、不提示，静默结束
+      if (result.disabled) return;
       if (result.updateAvailable) {
         // 顶部一条不打扰的提示
         showMessage(`发现新版本 v${result.latest}，可在设置 → 程序信息里查看`, "info", { duration: 6000 });
@@ -16453,22 +16508,30 @@
       return;
     }
 
-    if (payload.flow === "selectionTone") {
-      await openSelectionPreviewAsDialog({
-        intent: "tone",
-        tone: payload.tone || payload.label || "改写",
-        instruction: payload.instruction || ""
-      });
-      return;
-    }
-
-    if (payload.flow === "documentRewrite") {
-      await openSelectionPreviewAsDialog({
-        intent: "documentRewrite",
-        tone: payload.tone || payload.label || "全文润色",
-        instruction: payload.instruction || "",
-        scope: "document"
-      });
+    if (payload.flow === "selectionTone" || payload.flow === "documentRewrite") {
+      const isPolish = payload.key === "polish" || payload.key === "polishAll" || /润色/.test(payload.tone || payload.label || "");
+      const proceed = () => {
+        if (payload.flow === "documentRewrite") {
+          return openSelectionPreviewAsDialog({
+            intent: "documentRewrite",
+            tone: payload.tone || payload.label || "全文润色",
+            instruction: payload.instruction || "",
+            scope: "document"
+          });
+        }
+        return openSelectionPreviewAsDialog({
+          intent: "tone",
+          tone: payload.tone || payload.label || "改写",
+          instruction: payload.instruction || ""
+        });
+      };
+      if (isPolish && global.WpsAiPaywall?.guard) {
+        // 必须 await：guard 内部直接调用 proceed，返回的是它的 Promise。
+        // 原先这里是 await proceed()，不接住的话 proceed 失败会变成 unhandled rejection。
+        await global.WpsAiPaywall.guard("AI 润色", proceed);
+        return;
+      }
+      await proceed();
       return;
     }
 
@@ -17493,7 +17556,7 @@
   function buildSampleData(layoutName) {
     // 用于画廊缩略图与点击后载入的演示用数据
     switch (layoutName) {
-      case "cover": return { title: "灵犀 AI\n演示文稿", subtitle: "你的副标题", tag: "2026 KEYNOTE" };
+      case "cover": return { title: "陈年笔头助手\n演示文稿", subtitle: "你的副标题", tag: "2026 KEYNOTE" };
       case "section": return { number: "01", title: "章节标题", footer: "SECTION" };
       case "content": return { title: "核心要点", body: "第一条要点\n第二条要点\n第三条要点", tag: "OVERVIEW", footer: "" };
       case "stat": return { number: "98%", label: "增长率", description: "相较上一周期" };
@@ -17507,12 +17570,12 @@
         role: "Designer"
       };
       case "comparison": return {
-        title: "传统方式 vs 灵犀 AI",
+        title: "传统方式 vs 陈年笔头助手",
         leftIcon: "x-circle",
         leftLabel: "传统方式",
         leftBody: "手工排版耗时\n配色全凭手感\n字体混用混乱\n改一处全页重排",
         rightIcon: "check-circle",
-        rightLabel: "灵犀 AI",
+        rightLabel: "陈年笔头助手",
         rightBody: "一句话生成\n色板自动统一\n字体白名单约束\n字段独立可微调"
       };
       case "metric-trio": return {

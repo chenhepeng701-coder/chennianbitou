@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>灵犀AI</title>
+    <title>陈年笔头助手</title>
     <link rel="stylesheet" href="./js/vendor/ant-design-vue/reset.css" />
     <link rel="stylesheet" href="./css/style.css" />
     <script>
@@ -68,7 +68,7 @@
             </svg>
           </div>
           <div class="brand-text-group">
-            <h1 class="brand-name">灵犀AI</h1>
+            <h1 class="brand-name">陈年笔头助手</h1>
             <div class="brand-version-row">
               <span id="brandVersion" class="brand-version">v…</span>
               <span id="proxyStatusBadge" class="proxy-status-badge proxy-status-pending" title="本地代理检测中">检测中</span>
@@ -371,7 +371,7 @@
                     <label class="host-toggle"><input type="checkbox" id="enableHostWpp" /><span>PPT（演示）</span></label>
                     <label class="host-toggle"><input type="checkbox" id="enableHostPdf" /><span>PDF</span></label>
                   </div>
-                  <small class="field-tip">只在勾选的组件里加载灵犀AI 加载项。取消勾选后对应组件不再显示插件按钮。改动需<strong>重启 WPS</strong> 后生效。</small>
+                  <small class="field-tip">只在勾选的组件里加载陈年笔头助手 加载项。取消勾选后对应组件不再显示插件按钮。改动需<strong>重启 WPS</strong> 后生效。</small>
                 </div>
 
                 <label class="field">
@@ -589,7 +589,7 @@
                     <section class="config-card about-hero">
                       <div class="about-hero-main">
                         <div class="about-title-row">
-                          <span class="about-title">灵犀AI</span>
+                          <span class="about-title">陈年笔头助手</span>
                           <span id="aboutVersion" class="about-version" title="双击显示设备 SN">v…</span>
                         </div>
                         <p class="muted about-desc">WPS Office 加载项 · 多 provider AI 写作助手</p>
@@ -606,7 +606,7 @@
                       <section class="config-card about-info-item">
                         <span class="about-label">官网</span>
                         <div class="about-info-line">
-                          <a id="aboutHomepageLink" href="https://wps-ai.llteac.cn/" target="_blank" rel="noopener" class="about-version" title="在浏览器中打开">https://wps-ai.llteac.cn/</a>
+                          <a id="aboutHomepageLink" href="https://your-site.com" target="_blank" rel="noopener" class="about-version" title="在浏览器中打开">https://your-site.com</a>
                           <button id="copyHomepageBtn" type="button" class="ghost-btn compact-btn" title="复制官网地址">复制</button>
                         </div>
                       </section>
@@ -728,24 +728,24 @@
                   <h3>Bug 反馈</h3>
                 </div>
                 <div class="feedback-panel-body">
-                  <p class="feedback-panel-tip">遇到问题？欢迎加入粉丝群反馈！</p>
+                  <p class="feedback-panel-tip">遇到问题？欢迎留言反馈！</p>
                   <div class="feedback-steps">
                     <div class="feedback-step">
                       <span class="feedback-step-num">1</span>
-                      <span class="feedback-step-text">扫描下方二维码，关注公众号</span>
+                      <span class="feedback-step-text">扫描下方二维码，获取素材与更新</span>
                     </div>
                     <div class="feedback-step">
                       <span class="feedback-step-num">2</span>
-                      <span class="feedback-step-text">在公众号内发送 <code>ai</code>，即可获取进群链接</span>
+                      <span class="feedback-step-text">有问题可在素材库官网留言反馈</span>
                     </div>
                     <div class="feedback-step">
                       <span class="feedback-step-num">3</span>
-                      <span class="feedback-step-text">进群后描述问题，附上截图更有帮助</span>
+                      <span class="feedback-step-text">反馈时描述问题，附上截图更有帮助</span>
                     </div>
                   </div>
                   <div class="feedback-qr-wrap feedback-qr-wrap--panel">
-                    <img src="./images/qrcode_for_gh.jpg" alt="公众号二维码" class="feedback-qr-img feedback-qr-img--panel" />
-                    <p class="feedback-qr-label">微信扫码关注公众号</p>
+                    <img src="./img/qrcode-placeholder.png" alt="公文素材库二维码" class="feedback-qr-img feedback-qr-img--panel" />
+                    <p class="feedback-qr-label">扫码关注获取素材与更新</p>
                   </div>
                 </div>
               </section>
@@ -804,6 +804,116 @@
 
       <!-- AI 助手（合并了原 AI 操作 / AI 对话） -->
       <section id="aiView" class="panel tab-panel" data-tab-panel="ai">
+
+        <!-- 信创公文字体缺失警告提示条 (§3.4) -->
+        <div id="fontWarningBanner" class="font-warning-banner hidden" role="alert">
+          <div class="font-warning-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+              <line x1="12" y1="9" x2="12" y2="13"/>
+              <line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+          </div>
+          <div class="font-warning-body">
+            <div class="font-warning-title">检测到当前系统缺失标准公文字体，扫码免费领取《Win/统信/麒麟公文字体一键安装包》</div>
+            <div id="fontWarningDetail" class="font-warning-detail hidden"></div>
+          </div>
+          <button type="button" id="fontWarningCloseBtn" class="font-warning-close" title="关闭提示" aria-label="关闭提示">×</button>
+        </div>
+
+        <!-- 一键公文排版 (GB/T 9704) 折叠卡片 -->
+        <div id="govFormatCard" class="gov-format-card expanded">
+          <div class="gov-format-card-header" id="govFormatCardToggle" role="button" tabindex="0" aria-expanded="true" title="点击折叠/展开">
+            <div class="gov-format-title-group">
+              <svg class="gov-format-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+              <span class="gov-format-title">一键公文排版(GB/T 9704)</span>
+              <span class="gov-format-badge">本地离线</span>
+            </div>
+            <div class="gov-format-toggle-indicator">
+              <svg class="gov-format-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </div>
+          </div>
+          <div class="gov-format-card-body" id="govFormatCardBody">
+            <div class="gov-format-spec-grid">
+              <div class="gov-format-spec-item"><span class="spec-label">页边距</span><span class="spec-val">上 37mm、下 35mm、左 28mm、右 26mm</span></div>
+              <div class="gov-format-spec-item"><span class="spec-label">大标题</span><span class="spec-val">二号 方正小标宋简体，居中</span></div>
+              <div class="gov-format-spec-item"><span class="spec-label">一级标题</span><span class="spec-val">三号 黑体（一、）</span></div>
+              <div class="gov-format-spec-item"><span class="spec-label">二级标题</span><span class="spec-val">三号 楷体_GB2312（（一））</span></div>
+              <div class="gov-format-spec-item"><span class="spec-label">三级标题</span><span class="spec-val">三号 仿宋_GB2312 加粗（1.）</span></div>
+              <div class="gov-format-spec-item"><span class="spec-label">正文</span><span class="spec-val">三号 仿宋_GB2312，固定行距 28 磅，首行缩进 2 字符</span></div>
+            </div>
+            <div class="gov-format-actions">
+              <button type="button" id="btnGovFormat" class="primary-btn gov-format-btn" title="点击立即按 GB/T 9704 标准排版当前文档">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                </svg>
+                <span>一键公文排版</span>
+              </button>
+            </div>
+            <div id="govFormatStatus" class="gov-format-status hidden" role="status" aria-live="polite"></div>
+            <div class="gov-style-buttons-section">
+              <div class="gov-style-buttons-tip">或对选中段落单独套用：</div>
+              <div class="gov-style-buttons-row" role="group" aria-label="单独段落公文样式">
+                <button type="button" id="btnStyleTitle" class="gov-style-btn" data-style-type="TITLE" title="套用大标题格式（二号方正小标宋简体，居中）">大标题</button>
+                <button type="button" id="btnStyleH1" class="gov-style-btn" data-style-type="HEADING_1" title="套用一级标题格式（三号黑体，两端对齐，首行缩进2字符）">一级</button>
+                <button type="button" id="btnStyleH2" class="gov-style-btn" data-style-type="HEADING_2" title="套用二级标题格式（三号楷体_GB2312，两端对齐，首行缩进2字符）">二级</button>
+                <button type="button" id="btnStyleH3" class="gov-style-btn" data-style-type="HEADING_3" title="套用三级标题格式（三号仿宋_GB2312加粗，两端对齐，首行缩进2字符）">三级</button>
+                <button type="button" id="btnStyleBody" class="gov-style-btn" data-style-type="BODY" title="套用正文格式（三号仿宋_GB2312，两端对齐，首行缩进2字符）">正文</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 一键清洗格式 折叠卡片 -->
+        <div id="cleanFormatCard" class="gov-format-card expanded">
+          <div class="gov-format-card-header" id="cleanFormatCardToggle" role="button" tabindex="0" aria-expanded="true" title="点击折叠/展开">
+            <div class="gov-format-title-group">
+              <svg class="gov-format-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
+              </svg>
+              <span class="gov-format-title">一键清洗格式</span>
+              <span class="gov-format-badge">本地离线</span>
+            </div>
+            <div class="gov-format-toggle-indicator">
+              <svg class="gov-format-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </div>
+          </div>
+          <div class="gov-format-card-body" id="cleanFormatCardBody">
+            <div class="clean-format-options">
+              <label class="clean-format-opt-label">
+                <input type="checkbox" id="chkCleanMarkdown" checked />
+                <span>清除 Markdown 符号</span>
+              </label>
+              <label class="clean-format-opt-label">
+                <input type="checkbox" id="chkCleanBlankLines" checked />
+                <span>清除多余空行</span>
+              </label>
+              <label class="clean-format-opt-label">
+                <input type="checkbox" id="chkCleanPunctuation" checked />
+                <span>半角标点转全角</span>
+              </label>
+            </div>
+            <div class="gov-format-actions">
+              <button type="button" id="btnCleanFormat" class="primary-btn gov-format-btn" title="点击一键清洗当前文档的格式与标点">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
+                </svg>
+                <span>一键清洗当前文档</span>
+              </button>
+            </div>
+            <div id="cleanFormatStatus" class="gov-format-status hidden" role="status" aria-live="polite"></div>
+          </div>
+        </div>
 
         <!-- 快捷指令已经搬到顶部 ribbon 的「快捷指令 ▾」菜单里，这里不再重复展示，
              把整块空间留给对话流。 -->
@@ -895,7 +1005,7 @@
 
         <!-- 修订模式（仅 WPS 文字）：开后 AI 改动记为 Word 原生修订，可逐条接受 / 全部回撤 -->
         <div id="reviseModeBar" class="revise-mode-bar hidden">
-          <label class="revise-toggle" title="开启后 AI 对文档的改动会记为 Word 原生修订（可逐条接受 / 拒绝），作者标为「灵犀AI」，方便像审稿一样审 AI 的改动">
+          <label class="revise-toggle" title="开启后 AI 对文档的改动会记为 Word 原生修订（可逐条接受 / 拒绝），作者标为「陈年笔头助手」，方便像审稿一样审 AI 的改动">
             <input type="checkbox" id="reviseModeToggle" />
             <span class="revise-toggle-track"><span class="revise-toggle-thumb"></span></span>
             <span class="revise-toggle-text">
@@ -1021,6 +1131,28 @@
           <p>暂无改动记录。让 AI 帮你做点什么，这里就会显示。</p>
         </div>
         <div id="historyList" class="history-list"></div>
+      </section>
+
+      <!-- 私域引流卡片 (§3.5，面板底部常驻) -->
+      <!-- 注意：文案与链接由 js/promo-card.js 中的 CONFIG 统一驱动回填，上线前修改 promo-card.js 即可 -->
+      <section id="promoCard" class="promo-card" aria-label="公文素材库引流">
+        <div class="promo-card-main">
+          <div class="promo-qr-wrap">
+            <img id="promoQrImg" src="./img/qrcode-placeholder.png" alt="公文素材库二维码" class="promo-qr-img" width="120" height="120" />
+          </div>
+          <div class="promo-content">
+            <div id="promoCtaText" class="promo-title">扫码领取《公文格式自查表》+ 10 篇范文</div>
+            <div class="promo-actions">
+              <a id="promoSiteBtn" href="https://your-site.com" target="_blank" rel="noopener" class="promo-btn" role="button">进入公文素材库官网</a>
+            </div>
+            <div id="promoWechatContact" class="promo-wechat hidden"></div>
+            <div id="promoFallback" class="promo-fallback hidden" role="status" aria-live="polite">
+              <span class="promo-fallback-label">打不开？复制链接到浏览器：</span>
+              <span id="promoFallbackUrl" class="promo-fallback-url" title="点击或复制链接">https://your-site.com</span>
+              <button type="button" id="promoFallbackCopyBtn" class="promo-copy-btn" title="点击复制链接">复制</button>
+            </div>
+          </div>
+        </div>
       </section>
     </main>
 
@@ -1637,7 +1769,8 @@
             </label>
             <div class="material-brush-actions">
               <button id="materialBrushInpaintBtn" class="primary-btn compact-btn" type="button">涂抹处重绘</button>
-              <button id="materialBrushCutoutBtn" class="ghost-btn compact-btn" type="button">抠出涂抹主体</button>
+              <!-- 宪法 §八：抠出涂抹主体依赖本地抠图模型，模型禁用期间隐藏；恢复方法：去掉 hidden 类 -->
+              <button id="materialBrushCutoutBtn" class="ghost-btn compact-btn hidden" type="button">抠出涂抹主体</button>
               <button id="materialBrushCancelBtn" class="ghost-btn compact-btn" type="button">退出</button>
             </div>
           </div>
@@ -1884,5 +2017,11 @@
         document.write('<script src="./main.js' + (dev ? '?v=' + Date.now() : '') + '"><\/script>');
       })();
     </script>
+    <script src="./js/gov-format.js"></script>
+    <script src="./js/clean-format.js"></script>
+    <script src="./js/style-buttons.js"></script>
+    <script src="./js/font-compat.js"></script>
+    <script src="./js/promo-card.js"></script>
+    <script src="./js/paywall.js"></script>
   </body>
 </html>

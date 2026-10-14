@@ -3764,7 +3764,7 @@ html.settings-mode #presetPickerModal { z-index: 1500; }
 .tab-bar-action { flex: none; white-space: nowrap; }
 
 @media (max-width: 720px) {
-  /* Header：藏"灵犀AI"四个字（logo 已经够识别），让 model select / authBadge 拿更多宽度 */
+  /* Header：藏"陈年笔头助手"四个字（logo 已经够识别），让 model select / authBadge 拿更多宽度 */
   .brand-name { display: none; }
   /* authBadge"未配置/已登录"这种状态信息次要，在 modelSelect 旁边藏掉 */
   #authBadge { display: none; }
@@ -9523,3 +9523,565 @@ body.pure-mode .image-gen-panel.hidden { display: none; }
 .thinking-menu-item:hover { background: var(--surface, #f5f7fa); }
 .thinking-menu-item.active { color: var(--primary, #2563eb); }
 .thinking-menu-check { width: 14px; flex: none; display: inline-flex; align-items: center; justify-content: center; color: var(--primary, #2563eb); }
+
+/* ==========================================================================
+   一键公文排版 (GB/T 9704) 折叠卡片样式
+   ========================================================================== */
+.gov-format-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--panel);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  margin-bottom: 6px;
+  flex-shrink: 0;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.gov-format-card:hover {
+  border-color: var(--border-strong);
+}
+
+.gov-format-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 10px;
+  background: linear-gradient(135deg, rgba(26, 109, 255, 0.08) 0%, rgba(26, 109, 255, 0.02) 100%);
+  cursor: pointer;
+  user-select: none;
+}
+
+.gov-format-card-header:hover {
+  background: linear-gradient(135deg, rgba(26, 109, 255, 0.14) 0%, rgba(26, 109, 255, 0.05) 100%);
+}
+
+.gov-format-title-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.gov-format-icon {
+  width: 15px;
+  height: 15px;
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+.gov-format-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.gov-format-badge {
+  font-size: 10px;
+  padding: 1px 6px;
+  border-radius: 10px;
+  background: rgba(0, 180, 42, 0.12);
+  color: var(--success);
+  font-weight: 500;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+.gov-format-toggle-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+}
+
+.gov-format-chevron {
+  width: 15px;
+  height: 15px;
+  transition: transform 0.2s ease;
+}
+
+.gov-format-card.collapsed .gov-format-chevron {
+  transform: rotate(-90deg);
+}
+
+.gov-format-card.collapsed .gov-format-card-body {
+  display: none;
+}
+
+.gov-format-card.expanded .gov-format-chevron {
+  transform: rotate(0deg);
+}
+
+.gov-format-card.expanded .gov-format-card-body {
+  display: block;
+}
+
+.gov-format-card-body {
+  padding: 8px 10px 10px;
+  border-top: 1px solid var(--border);
+  background: var(--panel);
+}
+
+.gov-format-spec-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3px;
+  font-size: 11px;
+  background: var(--bg);
+  border: 1px solid var(--divider);
+  border-radius: var(--radius-sm);
+  padding: 6px 8px;
+  margin-bottom: 8px;
+}
+
+.gov-format-spec-item {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  line-height: 1.4;
+}
+
+.gov-format-spec-item .spec-label {
+  color: var(--muted);
+  font-weight: 500;
+  min-width: 52px;
+  flex-shrink: 0;
+}
+
+.gov-format-spec-item .spec-val {
+  color: var(--text);
+  word-break: break-all;
+}
+
+.gov-format-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.gov-format-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+}
+
+.gov-format-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.gov-format-status {
+  margin-top: 8px;
+  padding: 6px 8px;
+  border-radius: var(--radius-sm);
+  font-size: 11px;
+  line-height: 1.4;
+  word-break: break-all;
+}
+
+.gov-format-status.info {
+  background: var(--primary-soft);
+  color: var(--primary);
+  border: 1px solid rgba(26, 109, 255, 0.2);
+}
+
+.gov-format-status.success {
+  background: rgba(0, 180, 42, 0.08);
+  color: #008720;
+  border: 1px solid rgba(0, 180, 42, 0.2);
+}
+
+.gov-format-status.error {
+  background: rgba(245, 63, 63, 0.08);
+  color: var(--danger);
+  border: 1px solid rgba(245, 63, 63, 0.2);
+}
+
+.clean-format-options {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background: var(--bg);
+  border: 1px solid var(--divider);
+  border-radius: var(--radius-sm);
+  padding: 6px 8px;
+  margin-bottom: 8px;
+}
+
+.clean-format-opt-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--text);
+  cursor: pointer;
+  user-select: none;
+  line-height: 1.4;
+}
+
+.clean-format-opt-label input[type="checkbox"] {
+  width: 13px;
+  height: 13px;
+  cursor: pointer;
+  accent-color: var(--primary);
+  margin: 0;
+}
+
+/* ==========================================================================
+   单独段落公文样式按钮 (五个小按钮)
+   ========================================================================== */
+.gov-style-buttons-section {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--border);
+}
+
+.gov-style-buttons-tip {
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+
+.gov-style-buttons-row {
+  display: flex;
+  gap: 5px;
+  width: 100%;
+}
+
+.gov-style-btn {
+  flex: 1;
+  min-width: 0;
+  padding: 4px 2px;
+  font-size: 11px;
+  font-weight: 500;
+  text-align: center;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+  line-height: 1.4;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.gov-style-btn:hover {
+  background: var(--panel);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.gov-style-btn:active {
+  background: rgba(26, 109, 255, 0.08);
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: translateY(1px);
+}
+
+.gov-style-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  border-color: var(--border);
+  color: var(--muted);
+  background: var(--bg);
+}
+
+/* ==========================================================================
+   信创公文字体缺失黄色警告提示条 (§3.4)
+   ========================================================================== */
+.font-warning-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px 10px;
+  margin-bottom: 8px;
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: var(--radius-md);
+  color: #92400e;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  flex-shrink: 0;
+  transition: opacity 0.2s ease;
+  box-sizing: border-box;
+}
+
+.font-warning-banner.hidden {
+  display: none !important;
+}
+
+.font-warning-icon {
+  color: #d97706;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  margin-top: 1px;
+}
+
+.font-warning-body {
+  flex: 1;
+  min-width: 0;
+  line-height: 1.4;
+}
+
+.font-warning-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: #92400e;
+  word-break: break-all;
+}
+
+.font-warning-detail {
+  font-size: 11px;
+  color: #b45309;
+  margin-top: 2px;
+  word-break: break-all;
+}
+
+.font-warning-detail.hidden {
+  display: none !important;
+}
+
+.font-warning-close {
+  flex-shrink: 0;
+  border: none;
+  background: transparent;
+  color: #b45309;
+  font-size: 16px;
+  line-height: 1;
+  padding: 0 4px;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+.font-warning-close:hover {
+  color: #78350f;
+  background: rgba(180, 83, 9, 0.12);
+}
+
+/* ==========================================================================
+   私域引流卡片 (§3.5，面板底部常驻)
+   ========================================================================== */
+.promo-card {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 10px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  box-sizing: border-box;
+  margin-top: auto;
+  user-select: none;
+}
+
+.promo-card-main {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.promo-qr-wrap {
+  flex-shrink: 0;
+  width: 120px;
+  height: 120px;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.promo-qr-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  border-radius: var(--radius-sm);
+}
+
+.promo-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  justify-content: center;
+}
+
+.promo-title {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--text);
+  word-break: break-word;
+  user-select: text;
+}
+
+.promo-actions {
+  display: flex;
+  align-items: center;
+}
+
+.promo-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 12px;
+  background: var(--primary);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.promo-btn:hover {
+  background: var(--primary-hover);
+  color: #ffffff;
+}
+
+.promo-btn:active {
+  background: var(--primary-active);
+  transform: translateY(1px);
+}
+
+.promo-wechat {
+  font-size: 11px;
+  color: var(--muted);
+  user-select: text;
+}
+
+.promo-wechat.hidden {
+  display: none !important;
+}
+
+.promo-fallback {
+  margin-top: 6px;
+  padding: 5px 8px;
+  background: var(--bg);
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-sm);
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--text-secondary);
+  word-break: break-all;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+}
+
+.promo-fallback.hidden {
+  display: none !important;
+}
+
+.promo-fallback-label {
+  color: var(--muted);
+  flex-shrink: 0;
+}
+
+.promo-fallback-url {
+  color: var(--primary);
+  font-family: Consolas, "Microsoft YaHei UI", monospace;
+  text-decoration: underline;
+  cursor: pointer;
+  user-select: all;
+  -webkit-user-select: all;
+  word-break: break-all;
+}
+
+.promo-copy-btn {
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
+  font-size: 10px;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.promo-copy-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* ===== 付费转化弹窗 (§四) ===== */
+.paywall-modal-card {
+  max-width: 440px;
+  width: 90%;
+  border-radius: 10px;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.18);
+  border: 1px solid var(--border-color, #e2e8f0);
+}
+
+.paywall-modal-body {
+  padding: 16px 20px;
+}
+
+.paywall-tip-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: var(--bg-hover, #f8fafc);
+  border: 1px solid var(--border-color, #e2e8f0);
+  border-left: 4px solid var(--primary-color, #2563eb);
+  padding: 14px 16px;
+  border-radius: 6px;
+}
+
+.paywall-tip-icon {
+  flex-shrink: 0;
+  color: var(--primary-color, #2563eb);
+  margin-top: 2px;
+}
+
+.paywall-tip-text {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--text-color, #1e293b);
+  font-weight: 500;
+  word-break: break-word;
+}
+
+.paywall-fallback-url {
+  margin: 10px 0 0;
+  font-size: 11px;
+  color: var(--text-muted, #64748b);
+  word-break: break-all;
+  user-select: all;
+  -webkit-user-select: all;
+}
+
+.paywall-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 12px 20px 16px;
+  border-top: 1px solid var(--border-color, #f1f5f9);
+}
