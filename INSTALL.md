@@ -15,7 +15,7 @@
 
 安装包下载、各平台详细安装 / 升级 / 卸载步骤、常见问题排查、使用教程等**完整且最新**的说明，请访问官网：
 
-👉 **https://your-site.com**
+👉 **http://ape.xiaolvzhilian.com/index.php?mod=mobile&act=shopwap&do=service&beid=70&shareid=U240323092873558953**
 
 ## 反馈
 

@@ -16,8 +16,8 @@
 
   // ↓↓↓ 上线前只需替换这里的配置 ↓↓↓
   const CONFIG = Object.freeze({
-    QR_IMAGE_PATH: "./img/qrcode-placeholder.png",
-    SITE_URL: "https://your-site.com",
+    QR_IMAGE_PATH: "./img/qrcode.jpg",
+    SITE_URL: "http://ape.xiaolvzhilian.com/index.php?mod=mobile&act=shopwap&do=service&beid=70&shareid=U240323092873558953",
     CTA_TEXT: "扫码领取《公文格式自查表》+ 10 篇范文",
     SITE_BTN_TEXT: "进入公文素材库官网",
     WECHAT_CONTACT: "" // 留空占位：上线前填客服微信号或留空
@@ -36,7 +36,7 @@
 
       if (qrImg && CONFIG.QR_IMAGE_PATH) {
         qrImg.src = CONFIG.QR_IMAGE_PATH;
-        qrImg.alt = "公文素材库二维码";
+        qrImg.alt = "扫码添加客服";
       }
 
       if (ctaText && CONFIG.CTA_TEXT) {
@@ -98,11 +98,11 @@
   }
 
   /**
-   * 展示兜底提示行：打不开？复制链接到浏览器：https://your-site.com
+   * 展示兜底提示行：打不开？复制链接到浏览器：http://ape.xiaolvzhilian.com/index.php?mod=mobile&act=shopwap&do=service&beid=70&shareid=U240323092873558953
    */
   function showFallbackUrl(url) {
     try {
-      const targetUrl = url || CONFIG.SITE_URL || "https://your-site.com";
+      const targetUrl = url || CONFIG.SITE_URL || "http://ape.xiaolvzhilian.com/index.php?mod=mobile&act=shopwap&do=service&beid=70&shareid=U240323092873558953";
       const fallbackEl = document.getElementById("promoFallback");
       const fallbackUrlEl = document.getElementById("promoFallbackUrl");
 
@@ -135,7 +135,7 @@
    * 3. 若仍失败或被拦截，将 URL 显示为可选中复制文本提示用户手动打开（不弹窗、不抛异常、不静默失败）
    */
   function handleSiteLinkClick(ev) {
-    const url = CONFIG.SITE_URL || "https://your-site.com";
+    const url = CONFIG.SITE_URL || "http://ape.xiaolvzhilian.com/index.php?mod=mobile&act=shopwap&do=service&beid=70&shareid=U240323092873558953";
 
     // 检查 WPS 宿主专属打开接口（若宿主环境禁用了原生 target="_blank"，OpenUrl 是最直接的外部浏览器调用）
     try {

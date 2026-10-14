@@ -25,4 +25,4 @@ bash build.sh --arch loongarch64 # 龙芯（不带内置 node，装时用系统 
 
 面向用户的安装包下载、各发行版安装步骤、常见问题，请访问官网：
 
-👉 **https://your-site.com**
+👉 **http://ape.xiaolvzhilian.com/index.php?mod=mobile&act=shopwap&do=service&beid=70&shareid=U240323092873558953**

@@ -23,4 +23,4 @@ bash build-dmg.sh
 
 面向用户的安装包下载、安装步骤、常见问题，请访问官网：
 
-👉 **https://your-site.com**
+👉 **http://ape.xiaolvzhilian.com/index.php?mod=mobile&act=shopwap&do=service&beid=70&shareid=U240323092873558953**

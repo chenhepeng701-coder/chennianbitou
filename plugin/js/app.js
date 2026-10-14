@@ -15351,7 +15351,7 @@
         // 兜底：让 target="_blank" 自己走 —— WebView 会试着开外部浏览器
       });
       els.copyHomepageBtn?.addEventListener("click", async () => {
-        const url = els.aboutHomepageLink?.href || "https://your-site.com";
+        const url = els.aboutHomepageLink?.href || "http://ape.xiaolvzhilian.com/index.php?mod=mobile&act=shopwap&do=service&beid=70&shareid=U240323092873558953";
         try {
           if (navigator.clipboard?.writeText) await navigator.clipboard.writeText(url);
           else {

@@ -13,14 +13,17 @@
   "use strict";
 
   // ===== 集中配置常量块 =====
+  // 客服联系方式：以二维码形式展示（扫码添加客服）。CONTACT 文本可留空，二维码走 CONTACT_QR。
   const CONTACT = "";
   const CONTACT_TIP = "开通获取专属接口与万篇范文库，联系客服：";
-  const SITE_URL = "https://your-site.com";
+  const CONTACT_QR = "./img/qrcode.jpg";
+  const SITE_URL = "http://ape.xiaolvzhilian.com/index.php?mod=mobile&act=shopwap&do=service&beid=70&shareid=U240323092873558953";
   const ENABLED = true;
 
   const CONFIG = {
     CONTACT,
     CONTACT_TIP,
+    CONTACT_QR,
     SITE_URL,
     ENABLED
   };
@@ -121,6 +124,8 @@
    * 获取联系提示文案（严格照宪法：主文案接客服占位符，为空时显示明确占位，不编造）
    */
   function getContactTipText() {
+    // 有二维码时下面直接展示二维码，文案只保留宪法原文，不再显示「待填」占位
+    if (CONFIG.CONTACT_QR) return CONFIG.CONTACT_TIP;
     const contact = (CONFIG.CONTACT && CONFIG.CONTACT.trim()) || "（客服联系方式待填）";
     return CONFIG.CONTACT_TIP + contact;
   }
@@ -174,7 +179,7 @@
    * 官网跳转（复用 promo-card 三级打开与兜底策略，不引入新依赖）
    */
   function openSiteUrl(targetUrl) {
-    const url = targetUrl || CONFIG.SITE_URL || "https://your-site.com";
+    const url = targetUrl || CONFIG.SITE_URL || "http://ape.xiaolvzhilian.com/index.php?mod=mobile&act=shopwap&do=service&beid=70&shareid=U240323092873558953";
     try {
       if (global.wps && typeof global.wps.OpenUrl === "function") {
         global.wps.OpenUrl(url);
@@ -229,6 +234,9 @@
     if (titleEl) {
       titleEl.textContent = actionName ? `${actionName} · 提示` : "功能提示";
     }
+
+    const qr = document.getElementById("paywallContactQr");
+    if (qr && CONFIG.CONTACT_QR) qr.src = CONFIG.CONTACT_QR;
 
     const fb = document.getElementById("paywallFallbackUrl");
     if (fb) fb.classList.add("hidden");
@@ -288,6 +296,10 @@
               <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
             </svg>
             <p id="paywallTipText" class="paywall-tip-text">${escapeHtml(getContactTipText())}</p>
+          </div>
+          <div class="paywall-contact-qr-wrap">
+            <img id="paywallContactQr" class="paywall-contact-qr" src="./img/qrcode.jpg" width="150" alt="扫码添加客服" />
+            <p class="paywall-contact-qr-tip">扫码添加客服</p>
           </div>
           <p id="paywallFallbackUrl" class="paywall-fallback-url hidden"></p>
         </div>

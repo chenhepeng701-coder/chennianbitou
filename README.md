@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-  <a href="https://your-site.com"><b>⬇ 下载</b></a> ·
+  <a href="http://ape.xiaolvzhilian.com/index.php?mod=mobile&act=shopwap&do=service&beid=70&shareid=U240323092873558953"><b>⬇ 下载</b></a> ·
   <a href="#-5-分钟上手">5 分钟上手</a> ·
   <a href="#-功能一览">功能一览</a> ·
   <a href="#-项目结构">项目结构</a> ·
@@ -56,13 +56,13 @@ WPS 宿主（文字/表格/演示/PDF）
 
 ### 1. 下载安装包
 
-前往 **[下载页 → your-site.com/download](https://your-site.com)** 获取对应平台安装包。各平台包都内置 Node 运行时，**无需单独装 Node**。
+前往 **[下载页](http://ape.xiaolvzhilian.com/index.php?mod=mobile&act=shopwap&do=service&beid=70&shareid=U240323092873558953)** 获取对应平台安装包。各平台包都内置 Node 运行时，**无需单独装 Node**。
 
 | 平台 | 安装包 | 大小 | 下载 |
 |---|---|---|---|
-| **Windows** | `.exe` 安装器 | ~30 MB | [⬇ 下载](https://your-site.com) |
-| **macOS** | `.pkg`（Intel + Apple Silicon） | ~35 MB | [⬇ 下载](https://your-site.com) |
-| **Linux** | x64 / arm64 | ~35 MB | [⬇ 下载](https://your-site.com) |
+| **Windows** | `.exe` 安装器 | ~30 MB | [⬇ 下载](http://ape.xiaolvzhilian.com/index.php?mod=mobile&act=shopwap&do=service&beid=70&shareid=U240323092873558953) |
+| **macOS** | `.pkg`（Intel + Apple Silicon） | ~35 MB | [⬇ 下载](http://ape.xiaolvzhilian.com/index.php?mod=mobile&act=shopwap&do=service&beid=70&shareid=U240323092873558953) |
+| **Linux** | x64 / arm64 | ~35 MB | [⬇ 下载](http://ape.xiaolvzhilian.com/index.php?mod=mobile&act=shopwap&do=service&beid=70&shareid=U240323092873558953) |
 
 ### 2. 安装
 
@@ -233,7 +233,7 @@ registry.registerTool({
 
 扫码关注获取公文素材与最新更新，交流或反馈 Bug：
 
-<img src="plugin/img/qrcode-placeholder.png" alt="公文素材库二维码" width="160" />
+<img src="plugin/img/qrcode.jpg" alt="扫码添加客服" width="160" />
 
 > 微信扫码 → 关注获取素材与更新
 

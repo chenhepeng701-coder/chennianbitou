@@ -401,6 +401,7 @@
     // Bug 反馈
     "遇到问题？欢迎留言反馈！": "Ran into a problem? Join the community group to report it!",
     "扫码关注获取素材与更新": "Scan the QR code on WeChat to follow us",
+    "扫码添加客服": "Scan the QR code to add our support",
     "扫描下方二维码，获取素材与更新": "Scan the QR code below to follow the official account",
     "有问题可在素材库官网留言反馈": "Send in the official account",
     "，即可获取进群链接": "to get the group invite link",
