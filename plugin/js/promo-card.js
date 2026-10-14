@@ -20,8 +20,9 @@
   const CONFIG = Object.freeze({
     QR_IMAGE_PATH: "./img/qrcode.jpg",
     SITE_URL: "http://ape.xiaolvzhilian.com/index.php?mod=mobile&act=shopwap&do=service&beid=70&shareid=U240323092873558953",
-    CTA_TEXT: "扫码领取《公文格式自查表》+ 10 篇范文",
-    SITE_BTN_TEXT: "进入公文素材库官网",
+    CTA_TEXT: "陈年笔头网 · 120万篇公文素材库",
+    CTA_SUB_TEXT: "每日更新：党课讲稿、述职述廉、年终总结、讲话致辞等公文材料",
+    SITE_BTN_TEXT: "进入陈年笔头网",
     WECHAT_CONTACT: "" // 留空占位：上线前填客服微信号或留空
   });
 
@@ -32,6 +33,7 @@
     try {
       const qrImg = document.getElementById("promoQrImg");
       const ctaText = document.getElementById("promoCtaText");
+      const ctaSub = document.getElementById("promoCtaSub");
       const siteBtn = document.getElementById("promoSiteBtn");
       const fallbackUrl = document.getElementById("promoFallbackUrl");
       const wechatEl = document.getElementById("promoWechatContact");
@@ -43,6 +45,10 @@
 
       if (ctaText && CONFIG.CTA_TEXT) {
         ctaText.textContent = CONFIG.CTA_TEXT;
+      }
+
+      if (ctaSub && CONFIG.CTA_SUB_TEXT) {
+        ctaSub.textContent = CONFIG.CTA_SUB_TEXT;
       }
 
       if (siteBtn) {

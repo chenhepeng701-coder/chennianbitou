@@ -9940,6 +9940,14 @@ body.pure-mode .image-gen-panel.hidden { display: none; }
   user-select: text;
 }
 
+.promo-sub {
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--muted);
+  word-break: break-word;
+  user-select: text;
+}
+
 .promo-actions {
   display: flex;
   align-items: center;
@@ -10095,3 +10103,53 @@ body.pure-mode .image-gen-panel.hidden { display: none; }
 .paywall-contact-qr-wrap { display: flex; flex-direction: column; align-items: center; gap: 6px; margin: 12px 0 4px; }
 .paywall-contact-qr { width: 150px; height: auto; border-radius: var(--radius-sm); border: 1px solid var(--divider); background: #fff; padding: 4px; }
 .paywall-contact-qr-tip { margin: 0; font-size: 12px; color: var(--text-muted, #888); }
+
+/* ---------- 二维码点击放大遮罩（js/qr-zoom.js） ---------- */
+/* 三张客服二维码点一下全屏放大，方便手机扫码 */
+.promo-qr-img,
+.feedback-qr-img,
+.paywall-contact-qr {
+  cursor: zoom-in;
+}
+
+/* 全屏遮罩：z-index 高于 .modal-overlay(1000) 与全部弹层，保证盖住面板含弹窗 */
+.qr-zoom-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483200;
+  display: none; /* 默认隐藏；打开时由 qr-zoom.js 置为 flex */
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.86);
+}
+
+/* 大图：自适应钳制在视口 86% 内，contain 不变形，居中 */
+.qr-zoom-overlay__img {
+  max-width: min(86vw, 86vh);
+  max-height: min(86vh, 86vw);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  background: #fff;
+  border-radius: var(--radius-md);
+  padding: 8px; /* 白边留出扫码静默区 */
+  box-shadow: var(--shadow-md);
+  cursor: zoom-out;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.qr-zoom-overlay__hint {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 16px;
+  margin: 0;
+  text-align: center;
+  font-size: 12px;
+  color: #fff;
+  opacity: 0.7;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+}

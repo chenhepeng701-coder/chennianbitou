@@ -414,6 +414,14 @@
     "反馈时描述问题，附上截图更有帮助": "Describe the issue in the group — screenshots help a lot",
     "基本信息": "Basics",
 
+    // 引流卡片文案 (§3.5)
+    "陈年笔头网 · 120万篇公文素材库": "Chennian Bitou · 1.2M Official Document Library",
+    "每日更新：党课讲稿、述职述廉、年终总结、讲话致辞等公文材料": "Updated daily: Party lecture scripts, work reports, year-end summaries, speeches and more",
+    "进入陈年笔头网": "Visit Chennian Bitou",
+
+    // 二维码点击放大遮罩（qr-zoom.js）
+    "点击任意处关闭": "Click anywhere to close",
+
     // 对话框通用
     "保存当前修改，窗口保持打开继续配置": "Save changes and keep this window open",
     "已保存。请点窗口右上角 × 关闭。": "Saved. Close this window with the × in the corner.",
