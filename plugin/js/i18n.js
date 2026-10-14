@@ -18,7 +18,7 @@
   // ---- zh → en 词典（阶段一：核心界面）----
   const DICT_EN = {
     // 顶栏 / Tab / 全局
-    "灵犀AI": "Lingxi AI",
+    "陈年笔头助手": "Chennian Bitou",
     "你": "You",
     "思考": "Thinking",
     "插件启动中": "Starting up…",
@@ -399,12 +399,12 @@
     "重新读取 localStorage": "Reload localStorage",
 
     // Bug 反馈
-    "遇到问题？欢迎加入粉丝群反馈！": "Ran into a problem? Join the community group to report it!",
-    "微信扫码关注公众号": "Scan the QR code on WeChat to follow us",
-    "扫描下方二维码，关注公众号": "Scan the QR code below to follow the official account",
-    "在公众号内发送": "Send in the official account",
+    "遇到问题？欢迎留言反馈！": "Ran into a problem? Join the community group to report it!",
+    "扫码关注获取素材与更新": "Scan the QR code on WeChat to follow us",
+    "扫描下方二维码，获取素材与更新": "Scan the QR code below to follow the official account",
+    "有问题可在素材库官网留言反馈": "Send in the official account",
     "，即可获取进群链接": "to get the group invite link",
-    "进群后描述问题，附上截图更有帮助": "Describe the issue in the group — screenshots help a lot",
+    "反馈时描述问题，附上截图更有帮助": "Describe the issue in the group — screenshots help a lot",
     "基本信息": "Basics",
 
     // 对话框通用
@@ -426,7 +426,7 @@
     "AI 正在处理，请先点「停止」或等待本轮完成。": "AI is busy — click Stop or wait for this turn to finish.",
 
     // 快捷指令 / ribbon 按钮（getLabel 回调与面板快捷 chip 共用）
-    "打开灵犀AI": "Open Lingxi AI",
+    "打开陈年笔头助手": "Open Chennian Bitou",
     "帮我写": "Help me write",
     "续写": "Continue writing",
     "扩写": "Expand",
@@ -811,7 +811,7 @@
     "不动当前文档，把排版结果另存为新的 Word 文件": "Save the formatted result as a new Word file without touching the current document",
     "没有可导出的排版内容。": "No formatted content to export.",
     "HTML 渲染不可用。": "HTML rendering unavailable.",
-    "灵犀AI 排版导出": "LingxiAI Format Export",
+    "陈年笔头助手 排版导出": "Chennian Bitou Format Export",
     "已导出为 Word 文件": "Exported as Word file",
     "导出失败": "Export failed",
     "没有检测到画笔选区，可以描述要保留的主体，或直接整张去背景。": "No brush selection detected — describe what to keep, or remove the whole background.",
@@ -867,7 +867,7 @@
     "未识别到 WPS 宿主，请在 WPS 文字 / 表格 / 演示 / PDF 中打开本插件": "No WPS host detected — open this add-in inside WPS Writer / Spreadsheets / Presentation / PDF",
     "当前模式": "Mode",
     "直接操作wps": "Direct edit",
-    "只在勾选的组件里加载灵犀AI 加载项。取消勾选后对应组件不再显示插件按钮。改动需": "Load the Lingxi AI add-in only in the checked apps. Unchecked apps stop showing the button. Changes require",
+    "只在勾选的组件里加载陈年笔头助手 加载项。取消勾选后对应组件不再显示插件按钮。改动需": "Load the Chennian Bitou add-in only in the checked apps. Unchecked apps stop showing the button. Changes require",
     "导入文件格式：可选 frontmatter (": "Import format: optional frontmatter (",
     ")，余下是技能正文。无 frontmatter 时用第一个": ") — the rest is the skill body. Without frontmatter the first",
     "标题或文件名作为名字。": "heading (or the file name) is used as the name.",
@@ -992,7 +992,7 @@
     "清除本组": "Clear this group",
     "渲染失败": "Render failed",
     "渲染异常": "Render error",
-    "灵犀 AI 深度依赖": "Lingxi AI depends heavily on",
+    "陈年笔头助手 深度依赖": "Chennian Bitou depends heavily on",
     "点上一步会出现授权链接": "The authorization link appears after the previous step",
     "点右上角 ⚡ 测试供应商后，这里会出现\"模型下拉\"。": "Click the ⚡ test button first — a model dropdown will appear here.",
     "点右上角 ⚡ 测试渠道后，这里会出现\"模型下拉\"。": "Click the ⚡ test button first — a model dropdown will appear here.",
@@ -1037,8 +1037,8 @@
     "` 大 wrapper 把全部内容塞进去。分图层模式按「直接子元素」切层，包一个 wrapper 等于全页是 1 张图，分图层失效。错误：`": "` wrapper holding everything. Layered mode splits by direct children — one wrapper means the whole page is a single image and layering is defeated. Wrong: `",
     "`，正确：`": "`, correct: `",
     "替换成": "Replace with",
-    "灵犀AI 加载项已启动": "Lingxi AI add-in is running",
-    "直接打开灵犀AI": "Open Lingxi AI directly",
+    "陈年笔头助手 加载项已启动": "Chennian Bitou add-in is running",
+    "直接打开陈年笔头助手": "Open Chennian Bitou directly",
     "请在 WPS 顶部功能区查找": "Find the tab in the WPS ribbon:",
     "选项卡，然后点击": "tab, then click",
     "面板会嵌入到 WPS 右侧的任务窗格区域。再次点击同一按钮可以收起面板。": "The panel docks into the task pane on the right side of WPS. Click the same button again to collapse it.",

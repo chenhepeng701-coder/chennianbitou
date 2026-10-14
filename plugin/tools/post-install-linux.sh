@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# 灵犀AI Linux 安装后脚本(用户上下文)
+# 陈年笔头助手 Linux 安装后脚本(用户上下文)
 #
 # 调用入口:
 #   - tar.gz 绿色包:   install.sh 解压后直接 bash 调
@@ -198,7 +198,7 @@ write_publish_merged() {
 }
 
 # WPS for Linux 在不同发行版/分发渠道下的 jsaddons 路径分布很散,挨个写一遍。
-# 写多了不会出错(WPS 启动时只读它认得的那个);写少了「灵犀AI」标签就不显示。
+# 写多了不会出错(WPS 启动时只读它认得的那个);写少了「陈年笔头助手」标签就不显示。
 # 现在不再判断父目录是否存在 —— WPS 首次启动前父目录可能不存在,但我们提前 mkdir
 # 让 WPS 启动时就能读到 publish.xml。
 PUBLISH_DIRS=(

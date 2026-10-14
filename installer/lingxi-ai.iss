@@ -1,4 +1,4 @@
-; 灵犀AI Windows 安装器 - Inno Setup 5.5+
+; 陈年笔头助手 Windows 安装器 - Inno Setup 5.5+
 ;
 ; 用 Inno Setup Compiler 编译:
 ;   "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" installer\lingxi-ai.iss
@@ -9,8 +9,8 @@
 ;
 ; 产物：dist\lingxi-ai-1.4.7-setup.exe
 
-#define MyAppName "灵犀AI"
-#define MyAppNameEn "Lingxi AI"
+#define MyAppName "陈年笔头助手"
+#define MyAppNameEn "Chennian Bitou"
 #define MyAppVersion "1.4.7"
 #define MyAppPublisher "lingxi-ai"
 #define MyAppURL "https://github.com/lewis-hui1202/WPS-AI"
@@ -111,7 +111,7 @@ begin
     LogPath := ExpandConstant('{%USERPROFILE}\.lingxi-ai\install.log');
     if not FileExists(PublishPath) then begin
       MsgBox(
-        'post-install 没能写出 publish.xml,WPS 加载项不会显示「灵犀AI」。' + #13#10 + #13#10 +
+        'post-install 没能写出 publish.xml,WPS 加载项不会显示「陈年笔头助手」。' + #13#10 + #13#10 +
         '日志在:' + #13#10 +
         LogPath + #13#10 + #13#10 +
         '常见原因:杀毒/PowerShell 策略拦了脚本,或 WPS 正在运行占住了目录。请把日志发给维护者。',

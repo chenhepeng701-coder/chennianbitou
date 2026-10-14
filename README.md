@@ -1,4 +1,4 @@
-<h1 align="center">灵犀AI · WPS Office 多宿主 AI 助手</h1>
+<h1 align="center">陈年笔头助手 · WPS Office 多宿主 AI 助手</h1>
 
 <p align="center">
   一个 TaskPane 兼容 <b>WPS 文字 / 表格 / 演示 / PDF</b> 四端的 AI 助手，挂多家 AI（Codex / OpenAI / Anthropic / Gemini / Azure / OpenAI 兼容），AI 通过工具调用<b>直接读写文档</b>。
@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-  <a href="https://wps-ai.llteac.cn/download"><b>⬇ 下载</b></a> ·
+  <a href="https://your-site.com"><b>⬇ 下载</b></a> ·
   <a href="#-5-分钟上手">5 分钟上手</a> ·
   <a href="#-功能一览">功能一览</a> ·
   <a href="#-项目结构">项目结构</a> ·
@@ -56,24 +56,24 @@ WPS 宿主（文字/表格/演示/PDF）
 
 ### 1. 下载安装包
 
-前往 **[下载页 → wps-ai.llteac.cn/download](https://wps-ai.llteac.cn/download)** 获取对应平台安装包。各平台包都内置 Node 运行时，**无需单独装 Node**。
+前往 **[下载页 → your-site.com/download](https://your-site.com)** 获取对应平台安装包。各平台包都内置 Node 运行时，**无需单独装 Node**。
 
 | 平台 | 安装包 | 大小 | 下载 |
 |---|---|---|---|
-| **Windows** | `.exe` 安装器 | ~30 MB | [⬇ 下载](https://wps-ai.llteac.cn/download) |
-| **macOS** | `.pkg`（Intel + Apple Silicon） | ~35 MB | [⬇ 下载](https://wps-ai.llteac.cn/download) |
-| **Linux** | x64 / arm64 | ~35 MB | [⬇ 下载](https://wps-ai.llteac.cn/download) |
+| **Windows** | `.exe` 安装器 | ~30 MB | [⬇ 下载](https://your-site.com) |
+| **macOS** | `.pkg`（Intel + Apple Silicon） | ~35 MB | [⬇ 下载](https://your-site.com) |
+| **Linux** | x64 / arm64 | ~35 MB | [⬇ 下载](https://your-site.com) |
 
 ### 2. 安装
 
-- **Windows**：先临时关掉杀软实时防护 → 双击 setup.exe → 完全退出 WPS → 重开 WPS，ribbon 出现「灵犀AI」标签即成功
+- **Windows**：先临时关掉杀软实时防护 → 双击 setup.exe → 完全退出 WPS → 重开 WPS，ribbon 出现「陈年笔头助手」标签即成功
 - **macOS**：**右键 .pkg → 打开**（Gatekeeper 拦未签名包，双击会报错）→ 输系统密码 → 完全退出 WPS → 重开 WPS
 
 详细步骤（卸载 / 升级 / 故障排查 / 安装器构建）见 [INSTALL.md](INSTALL.md)。
 
 ### 3. 配置 AI 模型
 
-1. ribbon 点「打开灵犀AI」→ TaskPane 右侧弹出 → ⚙ 设置（独立弹窗）
+1. ribbon 点「打开陈年笔头助手」→ TaskPane 右侧弹出 → ⚙ 设置（独立弹窗）
 2. 「聊天模型」面板 → **+ 新增供应商** → 15 条预设里选一家（baseURL 已预填）
 3. 填 API Key → ⚡ 测试 → 关弹窗 → header 下拉挑模型开聊
 
@@ -229,17 +229,17 @@ registry.registerTool({
 
 ## 💬 反馈
 
-### 加入粉丝群
+### 交流与反馈
 
-扫码关注公众号，回复 `ai` 获取粉丝群链接，和其他用户交流或反馈 Bug：
+扫码关注获取公文素材与最新更新，交流或反馈 Bug：
 
-<img src="img/qrcode_for_gh_e26e731fb54c_258.jpg" alt="公众号二维码" width="160" />
+<img src="plugin/img/qrcode-placeholder.png" alt="公文素材库二维码" width="160" />
 
-> 微信扫码 → 关注公众号 → 回复 `ai` → 进粉丝群
+> 微信扫码 → 关注获取素材与更新
 
 ### Bug 上报信息
 
-发现 Bug 请在群内附上：
+发现 Bug 请反馈时附上：
 
 - 系统 + WPS 版本
 - 哪个宿主、哪个工具触发
@@ -252,4 +252,4 @@ registry.registerTool({
 
 本项目基于 **[MIT License](LICENSE)** 开源 —— 可自由使用、修改、分发、商用，保留版权与许可声明即可。
 
-> 品牌名称「灵犀AI」、公众号二维码及截图等资产不在 MIT 授权范围内，仅用于标识本项目。
+> 本项目为基于 lewishui1202/WPS-AI（MIT License）的改造版。原项目品牌（Lingxi AI）、原作者公众号二维码及截图等资产不在 MIT 授权范围内。

@@ -1,4 +1,4 @@
-# 灵犀AI macOS Installer
+# 陈年笔头助手 macOS Installer
 
 打包 macOS 安装包，产出 `lingxi-ai-<version>-mac.dmg`（内含 `.pkg`，双击走系统安装向导）。
 
@@ -23,4 +23,4 @@ bash build-dmg.sh
 
 面向用户的安装包下载、安装步骤、常见问题，请访问官网：
 
-👉 **https://wps-ai.llteac.cn/**
+👉 **https://your-site.com**

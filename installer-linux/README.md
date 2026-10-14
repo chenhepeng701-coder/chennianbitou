@@ -1,4 +1,4 @@
-# 灵犀AI Linux Installer
+# 陈年笔头助手 Linux Installer
 
 打包 Linux 安装包，产出三种格式，覆盖国产 + 主流发行版：
 
@@ -25,4 +25,4 @@ bash build.sh --arch loongarch64 # 龙芯（不带内置 node，装时用系统 
 
 面向用户的安装包下载、各发行版安装步骤、常见问题，请访问官网：
 
-👉 **https://wps-ai.llteac.cn/**
+👉 **https://your-site.com**
